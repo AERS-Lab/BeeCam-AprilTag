@@ -1,0 +1,27 @@
+ , , , , , , 
+Statistics for "queen" 
+ , , , , , , 
+ , , , , , , 
+Parameters, queen 
+ , , , , , , 
+'ID Tags Requested', '0 - 299'
+IDs tagged in the field, ND
+ , , , , , , 
+'Percentage of ID detected (%) ', 40.0
+'Total number of Detections ', 270632
+'Total number of events ', 5224
+'Total average number of detections per event ', 51.81
+ , , , , , , 
+'Total number of "enter" events ', 746
+'Total percent of "enter" events (%) ', 14.28
+'Total number of "exit" events ', 467
+'Total percent of "exit" events (%) ', 8.94
+'Total number of "unknown" events ', 4011
+'Total percent of "unknown" events (%) ', 76.78
+'Total Average Event Time (hh:mm:ss) ', '0:00:30'
+'Total Average Event Time Std Dev (hh:mm:ss) ', '0:01:01'
+ , , , , , , 
+'Total number of trips ', 81
+'Total percentage of events used for Trips (%) ', 3.1
+'Total Average Trip Time (hh:mm:ss) ', '0:15:05'
+'Total Average Trip Time Std Dev (hh:mm:ss)', '0:25:36'
