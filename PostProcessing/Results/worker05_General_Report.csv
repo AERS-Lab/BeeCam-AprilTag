@@ -1,0 +1,32 @@
+ , , , , , , 
+Statistics for "worker05" 
+ , , , , , , 
+Data period for processing 
+Initial date (mm/dd/yy  hh:mm:ss) , 03/14/2024  00:00:00 
+Final date (mm/dd/yy  hh:mm:ss) , 05/07/2024  13:34:51 
+Total time (days hh:mm:ss) , 54 days  13:34:51 
+ , , , , , , 
+ , , , , , , 
+Parameters, worker05 
+ , , , , , , 
+'ID Tags Requested', '500 - 5099'
+IDs tagged in the field, ND
+ , , , , , , 
+'Percentage of ID detected (%) ', 3.7
+'Total number of Detections ', 15736
+'Total number of events ', 3297
+'Total average number of detections per event ', 4.77
+ , , , , , , 
+'Total number of "enter" events ', 1055
+'Total percent of "enter" events (%) ', 32.0
+'Total number of "exit" events ', 619
+'Total percent of "exit" events (%) ', 18.77
+'Total number of "unknown" events ', 1623
+'Total percent of "unknown" events (%) ', 49.23
+'Total Average Event Time (hh:mm:ss) ', '0:00:05'
+'Total Average Event Time Std Dev (hh:mm:ss) ', '0:00:11'
+ , , , , , , 
+'Total number of trips ', 674
+'Total percentage of events used for Trips (%) ', 40.89
+'Total Average Trip Time (hh:mm:ss) ', '0:18:39'
+'Total Average Trip Time Std Dev (hh:mm:ss)', '0:23:22'
