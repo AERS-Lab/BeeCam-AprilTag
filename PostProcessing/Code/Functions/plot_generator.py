@@ -5,8 +5,10 @@ Created on Tue Apr 16 18:26:43 2024
 
 @author: diegop
 """
+import statistics as stats
+import time
 import matplotlib
-matplotlib.use('Agg')    #### This line blocks the displaying of plottings
+#matplotlib.use('Agg')    #### This line blocks the displaying of plottings
 import matplotlib.pyplot as plt
 
 def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, all_trips_sec):
@@ -27,9 +29,12 @@ def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, al
     time_labels = [] # initialize tick labels
     # max_tick = max(all_trips_sec) + (500 - (max(all_trips_sec) % 500))
     max_tick = 7200 # 2 hours
-    # bin_width = int(max_tick / num_bins)
-    bin_width = 120 # 2 minutes
-
+    bin_width = int(max_tick / num_bins) # bins are 4 minutes long
+    #bin_width = 120 # 2 minutes
+    total_trips = len(all_trips_sec)
+    # all trips less than max_thick
+    all_trips_sec_less_than = [x for x in all_trips_sec if x <= max_tick]
+    
     for n in range(0,max_tick+bin_width,bin_width):
         time_ticks.append(n)
         
@@ -41,25 +46,42 @@ def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, al
         
         minute_integer = int(n/60)
         
-        if n % 180 == 0: # only show labels for every 6 minutes (to avoid crowding of labels)
+        if n % 240 == 0: # only show labels for every 4 minutes (to avoid crowding of labels)
             # time_labels.append(str(h)+':'+str(m)+':'+str(s))
             time_labels.append(str(minute_integer))
         else:
             time_labels.append('')
         
-    plt.hist(all_trips_sec, bins=num_bins, range=(0,7201), color='#ff9514')
+    counts, edges, bars = plt.hist(all_trips_sec_less_than, bins=num_bins, range=(0,7201), color='#ff9514')
     plt.grid(which='major',axis='y', linestyle='-')
     plt.grid(which='major',axis='x', linestyle='-', color = '#ededed')
-
+    plt.bar_label(bars, weight='bold')
     # set bin ticks and labels
-    plt.xticks(ticks=time_ticks, labels=time_labels, fontsize=18, rotation=0)
+    plt.xticks(ticks=time_ticks, labels=time_labels, fontsize=14, rotation=0)
     plt.yticks(fontsize=18)
-
+    total_trips_less_than = int(sum(counts))
     # set titles and axis labels
-    plt.title('Distribution of Trip Lengths under 2 Hours', fontsize = 30)
+    plt.title('Distribution of Trip Lengths under 2 Hours ('+str(total_trips_less_than)+' out of '+str(total_trips)+' total)', fontsize = 30)
     plt.xlabel('Length (minutes)', fontsize = 30)
     plt.ylabel('Frequency', fontsize = 30)
+    # Mean plot
+    mean = stats.mean(all_trips_sec_less_than)
+    mean_time = time.strftime("%M:%S", time.gmtime(mean))
+    plt.axvline(mean, color='k', linestyle='dashed', linewidth=1)
+    min_ylim, max_ylim = plt.ylim()
+    plt.text(mean*1.1, max_ylim*0.9, 'Mean: '+mean_time, weight='bold')
     
+    # Median plot
+    median = stats.median(all_trips_sec_less_than)
+    median_time = time.strftime("%M:%S", time.gmtime(median))
+    plt.axvline(median, color='k', linestyle='dashed', linewidth=1)
+    plt.text(median*1.1, max_ylim*0.7, 'Median: ' + median_time, weight='bold')
+    
+    # Mode plot
+    mode = stats.mode(all_trips_sec_less_than)
+    mode_time = time.strftime("%M:%S", time.gmtime(mode))
+    plt.axvline(mode, color='k', linestyle='dashed', linewidth=1)
+    plt.text(mode*1.1, max_ylim*0.5, 'Mode: ' + mode_time, weight='bold')
     
     plt.savefig('../Results/' + colony + '_Trips_Length.png')
     
