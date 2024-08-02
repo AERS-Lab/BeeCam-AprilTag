@@ -1,0 +1,31 @@
+ , , , , , , 
+Apiary Statistics for 2xWeek "1" 
+ , , , , , , 
+ , , , , , , 
+'Initial date (mm/dd/yy  hh:mm:ss)', '04/11/2024  00:00:00', '04/11/2024  00:00:00', '04/09/2024  00:00:00', '04/10/2024  00:00:00', '04/09/2024  00:00:00', '04/10/2024  00:00:00'
+'Final date (mm/dd/yy  hh:mm:ss)', '05/07/2024  13:27:43', '05/07/2024  13:24:42', '05/07/2024  13:16:25', '05/07/2024  13:28:13', '05/07/2024  13:29:28', '05/07/2024  13:34:51'
+'Total time (days hh:mm:ss)', '26 days  13:27:43', '26 days  13:24:42', '28 days  13:16:25', '27 days  13:28:13', '28 days  13:29:28', '27 days  13:34:51'
+ , , , , , , 
+Parameters, Queen, Worker01, Worker02, Worker03, Worker04, Worker05
+ , , , , , , 
+'ID Tags Requested/Processed', '6000 - 6199', '1000 - 1199', '2000 - 2199', '3000 - 3199', '4000 - 4199', '5000 - 5199'
+'IDs tagged in the field', '6000 - 6099', '1000 - 1099', '2000 - 2099', '3000 - 3099', '4000 - 4099', '5000 - 5099'
+ , , , , , , 
+'Percentage of ID detected (%) ', 52.5, 67.0, 14.0, 76.5, 61.0, 82.5
+'Total number of Detections ', 1138, 2003, 161, 6499, 4615, 7156
+'Total number of events ', 252, 536, 53, 1469, 1148, 1855
+'Total average number of detections per event ', 4.52, 4.52, 4.52, 4.52, 4.52, 4.52
+ , , , , , , 
+'Total number of "enter" events ', 62, 76, 6, 361, 236, 586
+'Total percent of "enter" events (%) ', 24.6, 14.18, 11.32, 24.57, 20.56, 31.59
+'Total number of "exit" events ', 38, 75, 5, 288, 181, 308
+'Total percent of "exit" events (%) ', 15.08, 13.99, 9.43, 19.61, 15.77, 16.6
+'Total number of "unknown" events ', 152, 385, 42, 820, 731, 961
+'Total percent of "unknown" events (%) ', 60.32, 71.83, 79.25, 55.82, 63.68, 51.81
+'Total Average Event Time (hh:mm:ss) ', '0:00:04', '0:00:01', '0:00:04', '0:00:02', '0:00:02', '0:00:02'
+'Total Average Event Time Std Dev (hh:mm:ss) ', '0:00:11', '0:00:03', '0:00:12', '0:00:08', '0:00:09', '0:00:07'
+ , , , , , , 
+'Total number of trips ', 14, 18, 1, 103, 51, 142
+'Total percentage of events used for Trips (%) ', 11.11, 6.72, 3.77, 14.02, 8.89, 15.31
+'Total Average Trip Time (hh:mm:ss) ', '2:27:59', '3:50:02', '13 days  22:57:08', '8:39:12', '8:42:10', '4:07:42'
+'Total Average Trip Time Std Dev (hh:mm:ss)', '6:04:58', '14:42:26', '0:00:00', '22:50:54', '23:21:20', '15:27:05'
