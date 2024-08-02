@@ -27,6 +27,8 @@ IDs tagged in the field, ND
 'Total Average Event Time Std Dev (hh:mm:ss) ', '0:00:11'
  , , , , , , 
 'Total number of trips ', 674
+'For Trips less than (min): ', 120
+'Total number of trips ', 533
 'Total percentage of events used for Trips (%) ', 40.89
 'Total Average Trip Time (hh:mm:ss) ', '0:18:39'
 'Total Average Trip Time Std Dev (hh:mm:ss)', '0:23:22'
