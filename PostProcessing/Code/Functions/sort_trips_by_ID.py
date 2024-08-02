@@ -40,7 +40,8 @@ def sort_trips_by_ID(events_by_ID):
                     exit_time = events_by_ID[ID][event-1][3]
                     enter_time = events_by_ID[ID][event][1]
                     trip_time =  enter_time - exit_time
-                    trips_by_ID[ID].append([exit_time,enter_time,trip_time]) # add trip to ID
+                    trip_time_sec = int(trip_time.total_seconds())
+                    trips_by_ID[ID].append([exit_time,enter_time,trip_time, trip_time_sec]) # add trip to ID
                     
                 prev_event = current_event # set previous event for next loop
                 

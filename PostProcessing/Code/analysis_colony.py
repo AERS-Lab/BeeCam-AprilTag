@@ -17,6 +17,7 @@ from sort_events_by_ID import *
 from sort_trips_by_ID import *
 from csv_events import *
 from plot_generator import *
+from plot_generator3 import *
 from report_printing import *
 from report_gen2 import *
 from csv_report_2 import *
@@ -32,11 +33,13 @@ from csv_report_2 import *
 #colony = 'queen'
 colony = 'worker05'
 # introduce the Min and Max ID numbers tagged
-min_ID = 500
-max_ID = 5099
+ID_tagged = [ [500, 599] , [5000, 5099] ]
+min_ID = ID_tagged[0][0]
+max_ID = ID_tagged[-1][-1]
 
 # Insert the initial day of tagging in the format [YY, MM, DD] 
-crop_datetime = [2024, 3, 14]
+date_tagging = [ [2024, 3, 14], [2024, 4, 11] ] 
+crop_datetime = date_tagging[0]
 
 # Call class to define variables inside object p
 p = parameters_gen()
@@ -68,7 +71,7 @@ csv_events(colony, events_by_ID)
 
 # generates and save plots in the Results folder
 
-plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, all_trips_sec)
+plot_generator3(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, all_trips_sec, date_time, ID_tagged)
 
 ## Report summary
 

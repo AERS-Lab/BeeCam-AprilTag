@@ -147,7 +147,7 @@ for k in range(0,len(arrow_x)):
     num += 1 # add 1 to order for next arrow
 
 # show summed vector direction (location of arrow is not significant)
-plot_center_x = 363
+plot_center_x = 400
 plot_center_y = 160
 plt.arrow(plot_center_x, plot_center_y, sum_vector_x, sum_vector_y, width=2, head_width=10, fc='#150fd1', ec='#150fd1')
 plt.annotate('Summed\nVector\nDirection', ha='center',xy = (plot_center_x, plot_center_y-5), size=20, weight='bold',color='#150fd1')

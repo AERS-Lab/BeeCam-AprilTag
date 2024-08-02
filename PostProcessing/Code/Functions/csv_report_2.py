@@ -102,6 +102,14 @@ def csv_report_2(colony, p, start_datetime, stop_datetime):
     p.total_num_trips.insert(0, 'Total number of trips ')
     f_param_allRows.append(str(p.total_num_trips)[1:-1] + '\n')
     
+    max_trip_min = []
+    max_trip_min.append(int(p.max_trip_len_sec[0]/60))
+    max_trip_min.insert(0, 'For Trips less than (min): ')
+    f_param_allRows.append(str(max_trip_min)[1:-1] + '\n')
+    
+    p.num_trips_less_than.insert(0, 'Total number of trips ')
+    f_param_allRows.append(str(p.num_trips_less_than)[1:-1] + '\n')
+    
     p.percent_events_for_trips = [round(e, 2) for e in p.percent_events_for_trips]
     p.percent_events_for_trips.insert(0, 'Total percentage of events used for Trips (%) ')
     f_param_allRows.append(str(p.percent_events_for_trips)[1:-1] + '\n')

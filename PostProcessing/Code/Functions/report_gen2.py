@@ -136,14 +136,15 @@ def report_gen2(colony, min_ID, max_ID, detections_by_ID, events_by_ID, trips_by
     
     # average trip length
     #### Function to return trips less than certain period
-    max_trip_len_sec = 7200
+    p.max_trip_len_sec.append(7200)
     
     def smaller_than(sequence, value):
         return [item for item in sequence if item < value]
     
-    all_trips_sec_lessthan = smaller_than(all_trips_sec, max_trip_len_sec)
+    all_trips_sec_lessthan = smaller_than(all_trips_sec, p.max_trip_len_sec[0])
 
-
+    p.num_trips_less_than.append(len(all_trips_sec_lessthan))
+    
     if len(all_trips_sec_lessthan) > 0:    
         avg_trip_length_s = statistics.mean(all_trips_sec_lessthan)
         avg_trip_length_stdev = statistics.stdev(all_trips_sec_lessthan)
@@ -157,7 +158,8 @@ def report_gen2(colony, min_ID, max_ID, detections_by_ID, events_by_ID, trips_by
     p.total_avg_trip_length_stdev.append(str(timedelta(seconds=round(avg_trip_length_stdev))))
     p.total_avg_trip_length_time.append(str(avg_trip_length_time))
     
-    print('For trips less than ' + str(max_trip_len_sec) +'s = '+ str(round(max_trip_len_sec/60)) + 'min' )
+    print('For trips less than ' + str(p.max_trip_len_sec[0]) +'s = '+ str(round(p.max_trip_len_sec[0]/60)) + 'min' )
+    print(p.num_trips_less_than[0],'trips were identified')
     print('Avg trip length (in seconds) =', '%.2f' % avg_trip_length_s, 'with std dev =', '%.2f' % avg_trip_length_stdev)
     print('Avg trip length (in hh:mm:ss) =', avg_trip_length_time, 'with std dev =', timedelta(seconds=round(avg_trip_length_stdev)))
 
@@ -202,7 +204,7 @@ def report_gen2(colony, min_ID, max_ID, detections_by_ID, events_by_ID, trips_by
     print('Avg event length =','%.2f' % avg_event_length_s,'seconds with std dev =','%.2f' % avg_event_length_stdev)
     
     print('---------------------------------------------------------')
-op    print('')
+    print('')
     print('')
 
 

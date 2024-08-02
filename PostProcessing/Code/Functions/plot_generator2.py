@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Apr 16 18:26:43 2024
+Created on Tue Jun  4 12:51:40 2024
 
 @author: diegop
 """
+
 import statistics as stats
 import time
 import matplotlib
@@ -13,12 +14,16 @@ from datetime import datetime, timedelta
 #matplotlib.use('Agg')    #### This line blocks the displaying of plottings
 import matplotlib.pyplot as plt
 
-def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, all_trips_sec, date_time):
+def plot_generator2(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, all_trips_sec2, date_time):
     
     # =============================================================================
     # Plot trip length distribution
     # =============================================================================
-
+    all_trips_sec = []
+    for ID in range(min_ID, max_ID+1):
+        if trips_by_ID[ID] != 'no detections for this ID' and trips_by_ID[ID] != 'no clear trips for this ID' and trips_by_ID[ID] != 'only one detection for this ID':
+            for trip in range(0,len(trips_by_ID[ID])):
+                all_trips_sec.append(trips_by_ID[ID][trip][3])
         
     # initialize plot
     #fig, ax = plt.subplots()
@@ -85,7 +90,7 @@ def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, al
     plt.axvline(mode, color='k', linestyle='dashed', linewidth=1)
     plt.text(mode*1.1, max_ylim*0.5, 'Mode: ' + mode_time, weight='bold')
     
-    plt.savefig('../Results/' + colony + '_Trips_Length.png')
+    plt.savefig('../Results/' + colony + '_Trips_Length_IDs['+str(min_ID)+','+str(max_ID)+'].png')
     
     plt.close(fig1)
     ###############################################################################################
@@ -119,7 +124,7 @@ def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, al
     plt.xlabel('ID Number', fontsize=15)
     plt.ylabel('Frequency', fontsize=15)
     
-    plt.savefig('../Results/' + colony + '_Detections_histograms.png')
+    plt.savefig('../Results/' + colony + '_Detections_histograms_IDs['+str(min_ID)+','+str(max_ID)+'].png')
     
     plt.close(fig2)
     
@@ -153,7 +158,7 @@ def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, al
     plt.xlabel('ID Number', fontsize=25)
     plt.ylabel('Frequency', fontsize=25)
 
-    plt.savefig('../Results/' + colony + '_Events_histograms.png')
+    plt.savefig('../Results/' + colony + '_Events_histograms_IDs['+str(min_ID)+','+str(max_ID)+'].png')
     
     plt.close(fig3)
 
@@ -188,75 +193,7 @@ def plot_generator(colony, trips_by_ID, ID_num, max_ID, min_ID, events_by_ID, al
     plt.xlabel('ID Number', fontsize=25)
     plt.ylabel('Frequency', fontsize=25)
     
-    plt.savefig('../Results/' + colony + '_Trips_histograms.png')
+    plt.savefig('../Results/' + colony + '_Trips_histograms_IDs['+str(min_ID)+','+str(max_ID)+'].png')
 
     plt.close(fig4)
     
-    # ===========================================================================
-    # Plot Histogram: Detections Events Trips
-    # =============================================================================
-    
-    fig5 = plt.figure(5)
-    plt.figure(figsize=(20, 12))
-    
-    counts_all, edges_all, bars_all = plt.hist([ID_num, event_IDs, trips_IDs], bins=(max_ID-min_ID+1), range=(min_ID,max_ID+1), histtype='bar', label = ['Detections', 'Events', 'Trips'])
-    plt.grid(which='major',axis='y', linestyle='-')
-    for b in bars_all:
-        plt.bar_label(b, weight='bold')
-    
-    # set bin ticks and labels (uses same formatting as previous histogram)
-    plt.xticks(ticks=range(min_ID,max_ID+1), labels=xtick_labels,fontsize=10)
-    plt.yticks(fontsize=18)
-    # plt.grid(b=True, which='major', axis='x', linestyle='-', color='#ededed')
-
-    # set titles and axis labels
-    plt.title('Detections - Events - Trips by ID', fontsize=30)
-    # plt.title('From '+str(record_start_time)+' to '+str(record_end_time),fontsize=10)
-    plt.xlabel('ID Number', fontsize=25)
-    plt.ylabel('Frequency', fontsize=25)
-    plt.legend(loc='upper left', ncols=3)
-    
-    plt.savefig('../Results/' + colony + '_All_histograms.png')
-    
-    plt.close(fig5)
-    
-    # ===========================================================================
-    # Plot Histogram: Trips vs time
-    # =============================================================================
-    
-    #fig6 = plt.figure(6)
-    
-    fig6, ax = plt.subplots(figsize=(20,10))
-    
-    record_end_time = date_time[-1]
-    record_start_time = date_time[0]
-    
-    # determine number of bins
-    record_time = record_end_time - record_start_time
-    num_sec = record_time.total_seconds()
-    num_days = (num_sec - (num_sec % 86400)) / 86400
-    num_bins = (int(num_days) + 1)*4*2 # bins = # of days * 4 time segments * 2 bins per time segment
-    
-    # format axes
-    ax.tick_params(axis='x', which='major', labelrotation=80, labelsize=15)
-    ax.tick_params(axis='x', which='minor', labelrotation=80, labelsize=12)
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    ax.xaxis.set_minor_formatter(mdates.DateFormatter('%H:%M'))
-    ax.xaxis.set_major_locator(mdates.DayLocator(interval=1)) # set major x-ticks to be every day
-    ax.xaxis.set_minor_locator(mdates.HourLocator(byhour=[6,12,18]))
-    plt.yticks(fontsize=18)
-
-    # plot histogram & show grids
-    counts_time, edges_time, bars_time = plt.hist(date_time, bins=num_bins, color='#1F77B4',range = (datetime(2024,4,9,0,0,0),datetime(2024,5,7,0,0,0)))
-    plt.grid(which='major',axis='y', linestyle='-')
-    #plt.grid(b=True,which='major',axis='y', linestyle='-')
-    #plt.grid(b=True,which='major',axis='x', linestyle='--', color = '#ededed')
-    plt.bar_label(bars_time, weight='bold')
-    # set titles and axis labels
-    plt.title('Distribution of Detections over Time', fontsize = 30)
-    plt.xlabel('Time (mm/dd, hh:mm)', fontsize = 25)
-    plt.ylabel('Frequency', fontsize = 25)
-    
-    plt.close(fig6)
-
-    return

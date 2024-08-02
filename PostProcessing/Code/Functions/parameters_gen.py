@@ -24,7 +24,7 @@ def parameters_gen():
     p.total_num_exit_events, p.total_num_unknown_events, p.total_percent_enter, p.total_percent_exit, p.total_percent_unknow = [],[],[],[],[] 
     p.total_num_trips, p.percent_events_for_trips, p.total_avg_trip_length_s, p.total_avg_trip_length_stdev = [],[],[],[] 
     p.total_avg_trip_length_time, p.total_avg_event_length_time, p.total_avg_event_length_time_std, p.tag_IDs_per_colony = [],[],[],[]
-
+    p.max_trip_len_sec, p.num_trips_less_than = [], []
     return p
     
 
